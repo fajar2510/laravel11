@@ -11,7 +11,7 @@
         <a href="/authors/{{ $post->author->username }}" class="hover:underline text-blue-500">
           {{ $post->author->name }}</a> 
           in
-        <a href="#" class="hover:underline text-blue-500">Web Programming</a> |
+        <a href="/categories/{{ $post->category->slug }}" class="hover:underline text-blue-500">{{ $post->category->name }}</a> |
          <span class="text-base"> {{ $post->created_at->diffForHumans() }} </span>
       
       </div>

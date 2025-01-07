@@ -20,7 +20,7 @@ class CategoryFactory extends Factory
         $name = fake()->sentence(rand(1,2), false);
         return [
             //
-            'name' => fake()->sentence(rand(1,2), false),
+            'name' => $name,
             'slug' => Str::slug($name),
         ];
     }
