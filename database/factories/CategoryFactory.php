@@ -22,6 +22,7 @@ class CategoryFactory extends Factory
             //
             'name' => $name,
             'slug' => Str::slug($name),
+            // 'color' => $this->faker->hexColor,
         ];
     }
 }
