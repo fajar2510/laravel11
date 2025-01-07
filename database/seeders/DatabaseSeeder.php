@@ -2,8 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
+use App\Models\Post;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\User;
+use App\Models\Category;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -19,5 +21,14 @@ class DatabaseSeeder extends Seeder
             'name' => 'Test User',
             'email' => 'test@example.com',
         ]);
+
+        // membuat data dummy untuk category, user, dan post
+        $this->call([CategorySeeder::class, UserSeeder::class]);
+        Post::factory(20)->recycle([
+            Category::all(),
+            User::all(),
+           
+        ])->create();
+
     }
 }
