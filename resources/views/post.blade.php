@@ -9,7 +9,7 @@
               <address class="flex items-center my-6 not-italic">
                   <div class="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white">
                     <a href="/authors/{{ $post->author->username }}" rel="author">
-                      <img class="mr-4 w-16 h-16 rounded-full" src="https://flowbite.com/docs/images/people/profile-picture-2.jpg" alt="{{ $post->author->name }}">
+                      <img class="mr-4 w-16 h-16 rounded-full" src="https://www.gravatar.com/avatar/{{ md5(strtolower($post->author->username)) }}?s=200&d=identicon" alt="{{ $post->author->name }}">
                     </a>
                       <div>
                           <a href="/authors/{{ $post->author->username }}" rel="author" class="text-xl font-bold hover:underline text-gray-900 dark:text-white">

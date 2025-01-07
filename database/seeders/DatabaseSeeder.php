@@ -17,14 +17,14 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        // User::factory()->create([
+        //     'name' => 'Test User',
+        //     'email' => 'test@example.com',
+        // ]);
 
         // membuat data dummy untuk category, user, dan post
         $this->call([CategorySeeder::class, UserSeeder::class]);
-        Post::factory(20)->recycle([
+        Post::factory(36)->recycle([
             Category::all(),
             User::all(),
            
