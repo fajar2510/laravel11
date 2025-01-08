@@ -8,15 +8,15 @@
             <a href="/posts" class="font-medium text-blue-600 text-xs hover:underline">&laquo; Back to all posts</a>
               <address class="flex items-center my-6 not-italic">
                   <div class="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white">
-                    <a href="/authors/{{ $post->author->username }}" rel="author">
+                    <a href="/posts?author={{ $post->author->username }}" rel="author">
                       <img class="mr-4 w-16 h-16 rounded-full" src="https://www.gravatar.com/avatar/{{ md5(strtolower($post->author->username)) }}?s=200&d=identicon" alt="{{ $post->author->name }}">
                     </a>
                       <div>
-                          <a href="/authors/{{ $post->author->username }}" rel="author" class="text-xl font-bold hover:underline text-gray-900 dark:text-white">
+                          <a href="/posts?author={{ $post->author->username }}" rel="author" class="text-xl font-bold hover:underline text-gray-900 dark:text-white">
                             {{ $post->author->name }}
                           </a>
                           <p class="text-base text-gray-500 dark:text-gray-400 mb">{{ $post->created_at->diffForHumans() }}</></p>
-                          <a href="/categories/{{ $post->category->slug }}">
+                          <a href="/posts?category={{ $post->category->slug }}">
                             <span class="bg-{{ $post->category->color }}-200 hover:underline hover:text-blue-600 hover:bg-opacity-80 
                                transition-all duration-300 ease-in-out  text-primary-800 text-xs font-medium inline-flex 
                                items-center px-2.5 py-1 rounded dark:bg-primary-200 dark:text-primary-800">
