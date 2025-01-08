@@ -24,7 +24,7 @@ class DatabaseSeeder extends Seeder
 
         // membuat data dummy untuk category, user, dan post
         $this->call([CategorySeeder::class, UserSeeder::class]);
-        Post::factory(36)->recycle([
+        Post::factory(60)->recycle([
             Category::all(),
             User::all(),
            

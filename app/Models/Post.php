@@ -28,11 +28,33 @@ class Post extends Model {
 
         public function scopeFilter(Builder $query, array $filters): void {
 
+            // $query->when(
+            //     $filters['search'] ?? false, 
+            //     fn($query, $search) =>  // null coalescing operator, cara lain dari isset terbaru php 8.x
+            //     $query->where('title', 'like', '%'. $search . '%')
+            //     ->orWhereHas('author', fn($query) =>
+            //     $query->where('name', 'like', '%' . $search . '%')
+            //     )
+            // );  
+            
             $query->when(
-                $filters['search'] ?? false, 
-                fn($query, $search) =>  // null coalescing operator, cara lain dari isset terbaru php 8.x
-                $query->where('title', 'like', '%'. $search . '%')
-            );  
+                $filters['search'] ?? false,
+                fn($query, $search) =>
+                $query->where(function($query) use ($search) {
+                    $query->where('title', 'like', '%' . $search . '%')
+                        ->orWhere(function ($query) use ($search) {
+                            $query->whereHas('author', fn($query) =>
+                                $query->where('name', 'like', '%' . $search . '%')
+                            );
+                        })
+                        ->orWhere(function ($query) use ($search) {
+                            $query->whereHas('category', fn($query) =>
+                                $query->where('name', 'like', '%' . $search . '%')
+                            );
+                        });
+                })
+            );
+        
             
             $query->when(
                 $filters['category'] ?? false, 
@@ -51,6 +73,9 @@ class Post extends Model {
                     $query->where('username', $author)
                 )
             );
+
+
+         
         }
     }
 
